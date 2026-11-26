@@ -110,6 +110,10 @@ function submit() {
               <Send class="h-4 w-4" /> Send inquiry
             </button>
           </form>
+
+          <p class="mt-8 border-t border-sono-200 pt-4 text-xs leading-relaxed text-sono-600">
+            We hold the applicable permits to facilitate your export requirements and other related needs. For more details and inquiries, please send us an email at sonokelingheritage@gmail.com.
+          </p>
         </div>
       </aside>
     </Transition>
