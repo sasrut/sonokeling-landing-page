@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #__nuxt { min-height: 100%; }
+  html, body { overflow-x: hidden; overflow-y: auto; }
+  body { @apply bg-[#EBDDD2] font-sans text-sono-800 antialiased; } /* solid page background */
+}
+@layer components {
+  .field { @apply w-full rounded-xl border border-sono-200 bg-white/70 px-3.5 py-2.5 text-sm text-sono-800 placeholder:text-sono-400 focus:border-sono-500 focus:outline-none focus:ring-2 focus:ring-sono-300/60; }
+}
+
+/* ---- scene interaction ---- */
+.hotspot { cursor: pointer; outline: none; }
+.hotspot .lift { transition: transform .25s ease-out, filter .25s; }
+.hotspot:hover .lift, .hotspot:focus-visible .lift { transform: translateY(-6px); filter: drop-shadow(0 10px 8px rgba(75, 52, 48, .3)); }
+.ring { fill: transparent; stroke: #85594F; stroke-width: 2.5; stroke-dasharray: 6 6; opacity: 0; transition: opacity .2s; }
+.hotspot:hover .ring, .hotspot:focus-visible .ring { opacity: .8; }
+.ripple { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ripple 6s ease-out infinite; pointer-events: none; }
+.tip-in { animation: tipin .15s ease-out; }
+
+/* ---- ambient life ---- */
+.sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 6s ease-in-out infinite; }
+.swing { transform-box: fill-box; transform-origin: 50% 0; animation: swing 5s ease-in-out infinite; }
+.fall { opacity: 0; animation: fall 7s linear infinite; }
+.puff { opacity: 0; animation: puff 3.2s ease-out infinite; }
+.drift { animation: drift 40s linear infinite; }
+.fly { animation: fly 16s linear infinite; }
+.glow { animation: glow 3.4s ease-in-out infinite; }
+.shaft { animation: glow 7s ease-in-out infinite; }
+.mote { opacity: 0; animation: mote 9s ease-in-out infinite; }
+.crawl { animation: crawl 6s ease-in-out infinite alternate; }
+
+@keyframes ripple { 0% { opacity: 0; transform: scale(.8); } 12% { opacity: .7; } 45% { opacity: 0; transform: scale(1.25); } 100% { opacity: 0; } }
+@keyframes tipin { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sway { 0%, 100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.6deg); } }
+@keyframes swing { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
+@keyframes fall { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 10% { opacity: .9; } 100% { opacity: 0; transform: translate(26px, 120px) rotate(200deg); } }
+@keyframes puff { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 20% { opacity: .8; } 100% { opacity: 0; transform: translate(14px, -46px) scale(1.6); } }
+@keyframes drift { from { transform: translateX(-60px); } to { transform: translateX(200px); } }
+@keyframes fly { 0% { opacity: 0; transform: translate(-20px, 70px); } 5% { opacity: 1; } 50% { transform: translate(90px, 30px); } 95% { opacity: 1; } 100% { opacity: 0; transform: translate(190px, 50px); } }
+@keyframes glow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes mote { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: .85; } 100% { opacity: 0; transform: translate(16px, -44px); } }
+@keyframes crawl { from { transform: translate(0, 0); } to { transform: translate(28px, 14px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .glow, .shaft { opacity: .8; }
+}
